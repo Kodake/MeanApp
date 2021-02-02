@@ -5,6 +5,9 @@
                 <div class="card-body text-center">
                     <span class="titulo">Listado de Productos</span>
                     <button class="btn btn-success float-end" routerLink="/crear-producto">Nuevo</button>
+
+                    <input type="text" class="form-control mt-5" name="nombre" [(ngModel)]="nombre" (ngModelChange)="Search()" placeholder="Búscar por nombre">
+
                     <table *ngIf="productos.length > 0" class="table table-striped table-hover mt-4">
                         <thead>
                             <tr>
@@ -16,7 +19,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let producto of productos">
+                            <tr *ngFor="let producto of productos | paginate:{itemsPerPage:5, currentPage:pageNumber};">
                                 <th>{{producto.nombre}}</th>
                                 <th>{{producto.categoria}}</th>
                                 <th>{{producto.ubicacion}}</th>
@@ -28,6 +31,10 @@
                             </tr>
                         </tbody>
                     </table>
+                    <pagination-controls *ngIf="productos.length > 0" 
+                                        (pageChange)="pageNumber = $event"
+                                        previousLabel="Atrás"
+                                        nextLabel="Siguiente"></pagination-controls>
                     <h5 class="mt-5" *ngIf="productos.length == 0">No hay productos para mostrar</h5>
                 </div>
             </div>

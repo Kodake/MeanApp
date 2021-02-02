@@ -11,6 +11,8 @@ import { ProductoService } from 'src/app/services/producto.service';
 export class ListarProductosComponent implements OnInit {
 
   productos: Producto[] = [];
+  pageNumber: number = 1;
+  nombre: any;
 
   constructor(private toastr: ToastrService, private productoService: ProductoService) { }
 
@@ -33,5 +35,15 @@ export class ListarProductosComponent implements OnInit {
     }, error => {
       console.log(error);
     });
+  }
+
+  Search() {
+    if (this.nombre == "") {
+      this.ngOnInit();
+    } else {
+      this.productos = this.productos.filter(res => {
+        return res.nombre.toLocaleLowerCase().match(this.nombre.toLocaleLowerCase());
+      })
+    }
   }
 }
