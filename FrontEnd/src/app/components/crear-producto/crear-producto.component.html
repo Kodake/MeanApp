@@ -3,13 +3,13 @@
         <div class="col-lg-6 offset-3">
             <div class="card">
                 <div class="card-body text-center">
-                    <span class="titulo">Crear Producto</span>
+                    <span class="titulo">{{titulo}}</span>
 
-                    <form class="mt-3" [formGroup]="productoForm" (ngSubmit)="agregarProducto()">
+                    <form class="mt-3" [formGroup]="productoForm" (ngSubmit)="createProducto()">
                         <div class="mb-3">
-                            <input formControlName="producto" type="text" class="form-control form-control-lg"
+                            <input formControlName="nombre" type="text" class="form-control form-control-lg"
                                 placeholder="Producto">
-                            <div *ngIf="productoForm.get('producto')?.hasError('required') && productoForm.get('producto')?.touched"
+                            <div *ngIf="productoForm.get('nombre')?.hasError('required') && productoForm.get('nombre')?.touched"
                                 class="text-danger text-start">
                                 El nombre del producto es obligatorio.
                             </div>

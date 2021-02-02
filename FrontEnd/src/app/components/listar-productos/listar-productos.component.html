@@ -22,7 +22,7 @@
                                 <th>{{producto.ubicacion}}</th>
                                 <th>{{producto.precio | currency}}</th>
                                 <td>
-                                    <i class="fas fa-edit text-secondary"></i>
+                                    <i [routerLink]="['/editar-producto/', producto._id]" class="fas fa-edit text-secondary"></i>
                                     <i (click)="deleteProducto(producto._id)" class="fas fa-trash text-danger"></i>
                                 </td>
                             </tr>
